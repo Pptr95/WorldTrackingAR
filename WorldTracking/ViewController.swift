@@ -17,6 +17,9 @@ class ViewController: UIViewController {
     }
     @IBAction func add(_ sender: UIButton) {
         let node = SCNNode()
+        let doorNode = SCNNode(geometry: SCNPlane(width: 0.03, height: 0.06))
+        doorNode.geometry?.firstMaterial?.diffuse.contents = UIColor.white
+        doorNode.position = SCNVector3(0.0, -0.02, 0.051)
         let boxNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
         boxNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
         boxNode.position = SCNVector3(0.0, -0.05, 0.0)
@@ -31,12 +34,11 @@ class ViewController: UIViewController {
         node.geometry = SCNPyramid(width: 0.1, height: 0.1, length: 0.1)
         node.geometry?.firstMaterial?.specular.contents = UIColor.white
         node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
-        /*let x = randomNumbers(firstNum: -0.3, secondNum: 0.3)
-        let y = randomNumbers(firstNum: -0.3, secondNum: 0.3)
-        let z = randomNumbers(firstNum: -0.3, secondNum: 0.3)*/
         node.position = SCNVector3(0.2, 0.2, 0.2)
         self.sceneView.scene.rootNode.addChildNode(node)
         node.addChildNode(boxNode)
+        boxNode.addChildNode(doorNode)
+        
     }
     let configuration = ARWorldTrackingConfiguration()
     
