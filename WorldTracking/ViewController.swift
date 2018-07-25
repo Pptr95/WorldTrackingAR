@@ -17,7 +17,8 @@ class ViewController: UIViewController {
     }
     @IBAction func add(_ sender: UIButton) {
         let node = SCNNode()
-        node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0)
+        node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.03)
+        node.geometry?.firstMaterial?.specular.contents = UIColor.white
         node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
         node.position = SCNVector3(0, 0, 0)
         self.sceneView.scene.rootNode.addChildNode(node)
@@ -28,6 +29,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
         self.sceneView.session.run(configuration)
+        self.sceneView.autoenablesDefaultLighting = true
     }
     
     func resetSession() {
