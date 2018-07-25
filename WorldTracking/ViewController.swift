@@ -17,13 +17,27 @@ class ViewController: UIViewController {
     }
     @IBAction func add(_ sender: UIButton) {
         let node = SCNNode()
-        node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.03)
+        //node.geometry = SCNCone(topRadius: 0.3, bottomRadius: 0.3, height: 0.1)
+        //node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.03)
+        //node.geometry = SCNCylinder(radius: 0.3, height: 0.1)
+        //node.geometry = SCNSphere(radius: 0.2)
+        //node.geometry = SCNTube(innerRadius: 0.1, outerRadius: 0.1, height: 0.2)
+        //node.geometry = SCNTorus(ringRadius: 0.3, pipeRadius: 0.03)
+        //node.geometry = SCNPlane(width: 0.3, height: 0.3)
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 0.0, y: 0.0))
+        path.addLine(to: CGPoint(x: 0.0, y: 0.2))
+        path.addLine(to: CGPoint(x: 0.2, y: 0.3))
+        path.addLine(to: CGPoint(x: 0.4, y: 0.2))
+        path.addLine(to: CGPoint(x: 0.4, y: 0.0))
+        let shape = SCNShape(path: path, extrusionDepth: 0.1)
+        node.geometry = shape
         node.geometry?.firstMaterial?.specular.contents = UIColor.white
         node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
-        let x = randomNumbers(firstNum: -0.3, secondNum: 0.3)
+        /*let x = randomNumbers(firstNum: -0.3, secondNum: 0.3)
         let y = randomNumbers(firstNum: -0.3, secondNum: 0.3)
-        let z = randomNumbers(firstNum: -0.3, secondNum: 0.3)
-        node.position = SCNVector3(x, y, z)
+        let z = randomNumbers(firstNum: -0.3, secondNum: 0.3)*/
+        node.position = SCNVector3(0, 0, 0)
         self.sceneView.scene.rootNode.addChildNode(node)
     }
     let configuration = ARWorldTrackingConfiguration()
