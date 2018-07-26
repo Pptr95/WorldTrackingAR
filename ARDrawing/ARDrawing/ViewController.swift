@@ -36,6 +36,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
                 sphereNode.position = currentPositionOfCamera
                 self.sceneView.scene.rootNode.addChildNode(sphereNode)
+            } else {
+                let pointer = SCNNode(geometry: SCNSphere(radius: 0.01))
+                pointer.name = "pointer"
+                pointer.geometry?.firstMaterial?.diffuse.contents = UIColor.gray
+                pointer.position = currentPositionOfCamera
+                self.sceneView.scene.rootNode.enumerateChildNodes { (node, _) in
+                    if node.name == "pointer" {
+                        node.removeFromParentNode()
+                    }
+                }
+                self.sceneView.scene.rootNode.addChildNode(pointer)
             }
         }
     }
