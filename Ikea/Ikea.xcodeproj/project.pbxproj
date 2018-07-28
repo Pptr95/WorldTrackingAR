@@ -13,6 +13,7 @@
 		2FC97A9C210CD4A6003F7A7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FC97A9B210CD4A6003F7A7D /* Assets.xcassets */; };
 		2FC97A9F210CD4A6003F7A7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FC97A9D210CD4A6003F7A7D /* LaunchScreen.storyboard */; };
 		2FDE1348210CD8F9004C9DB9 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDE1347210CD8F9004C9DB9 /* ItemCell.swift */; };
+		2FDE134C210CFED5004C9DB9 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FDE134B210CFED4004C9DB9 /* Models.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		2FC97A9E210CD4A6003F7A7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2FC97AA0210CD4A6003F7A7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2FDE1347210CD8F9004C9DB9 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		2FDE134B210CFED4004C9DB9 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		2FC97A93210CD49F003F7A7D /* Ikea */ = {
 			isa = PBXGroup;
 			children = (
+				2FDE134B210CFED4004C9DB9 /* Models.scnassets */,
 				2FC97A94210CD49F003F7A7D /* AppDelegate.swift */,
 				2FC97A96210CD49F003F7A7D /* ViewController.swift */,
 				2FC97A98210CD49F003F7A7D /* Main.storyboard */,
@@ -126,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FC97A9F210CD4A6003F7A7D /* LaunchScreen.storyboard in Resources */,
+				2FDE134C210CFED5004C9DB9 /* Models.scnassets in Resources */,
 				2FC97A9C210CD4A6003F7A7D /* Assets.xcassets in Resources */,
 				2FC97A9A210CD49F003F7A7D /* Main.storyboard in Resources */,
 			);

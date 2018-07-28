@@ -19,9 +19,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         self.sceneView.debugOptions = [ARSCNDebugOptions.showWorldOrigin, ARSCNDebugOptions.showFeaturePoints]
+        self.configuration.planeDetection = .horizontal
         self.sceneView.session.run(configuration)
         self.itemsCollection.dataSource = self
         self.itemsCollection.delegate = self
+        self.registerGestureRecognizer()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -43,6 +45,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor = #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1)
+    }
+    
+    func registerGestureRecognizer() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        self.sceneView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func tapped () {
+        print("tap")
     }
 }
 
