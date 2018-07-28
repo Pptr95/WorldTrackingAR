@@ -20,20 +20,53 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8P5-YA-9lY">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </arscnView>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ls-qQ-gCl">
+                                <rect key="frame" x="20" y="547" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="0vk-00-IoL"/>
+                                    <constraint firstAttribute="width" constant="100" id="uO7-iP-a1W"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="Play"/>
+                                <connections>
+                                    <action selector="play:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WTL-rs-IRl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="acb-xi-fqd">
+                                <rect key="frame" x="255" y="547" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Jae-xr-QpP"/>
+                                    <constraint firstAttribute="width" constant="100" id="ryJ-4r-SIf"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="Reset"/>
+                                <connections>
+                                    <action selector="reset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gxh-RP-gnP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="acb-xi-fqd" secondAttribute="bottom" constant="20" id="Fst-2O-bxW"/>
                             <constraint firstItem="8P5-YA-9lY" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Gnp-6Y-cw7"/>
                             <constraint firstItem="8P5-YA-9lY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Slb-2W-sgO"/>
                             <constraint firstItem="8P5-YA-9lY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Uqf-Ev-ICg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="acb-xi-fqd" secondAttribute="trailing" constant="20" id="YmA-zl-1dE"/>
                             <constraint firstItem="8P5-YA-9lY" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="bV4-Wt-EX8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0Ls-qQ-gCl" secondAttribute="bottom" constant="20" id="eYd-f6-EXd"/>
+                            <constraint firstItem="0Ls-qQ-gCl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="l5L-By-4pa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="sceneView" destination="8P5-YA-9lY" id="rjm-He-U4v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Play" width="102" height="102"/>
+        <image name="Reset" width="102" height="102"/>
+    </resources>
 </document>
