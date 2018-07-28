@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F735194210CB57F007E94E1 /* Textures in Resources */ = {isa = PBXBuildFile; fileRef = 2F735193210CB57F007E94E1 /* Textures */; };
+		2F735199210CB67E007E94E1 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F735198210CB67E007E94E1 /* art.scnassets */; };
 		2F9B5715210BB84D00FDB2F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9B5714210BB84D00FDB2F7 /* AppDelegate.swift */; };
 		2F9B5717210BB84D00FDB2F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9B5716210BB84D00FDB2F7 /* ViewController.swift */; };
 		2F9B571A210BB84D00FDB2F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F9B5718210BB84D00FDB2F7 /* Main.storyboard */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F735193210CB57F007E94E1 /* Textures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Textures; sourceTree = "<group>"; };
+		2F735198210CB67E007E94E1 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		2F9B5711210BB84D00FDB2F7 /* Whack a jellyfish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Whack a jellyfish.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F9B5714210BB84D00FDB2F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F9B5716210BB84D00FDB2F7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,12 +58,14 @@
 		2F9B5713210BB84D00FDB2F7 /* Whack a jellyfish */ = {
 			isa = PBXGroup;
 			children = (
+				2F735193210CB57F007E94E1 /* Textures */,
 				2F9B5714210BB84D00FDB2F7 /* AppDelegate.swift */,
 				2F9B5716210BB84D00FDB2F7 /* ViewController.swift */,
 				2F9B5718210BB84D00FDB2F7 /* Main.storyboard */,
 				2F9B571B210BB85700FDB2F7 /* Assets.xcassets */,
 				2F9B571D210BB85700FDB2F7 /* LaunchScreen.storyboard */,
 				2F9B5720210BB85700FDB2F7 /* Info.plist */,
+				2F735198210CB67E007E94E1 /* art.scnassets */,
 			);
 			path = "Whack a jellyfish";
 			sourceTree = "<group>";
@@ -124,6 +130,8 @@
 			files = (
 				2F9B571F210BB85700FDB2F7 /* LaunchScreen.storyboard in Resources */,
 				2F9B571C210BB85700FDB2F7 /* Assets.xcassets in Resources */,
+				2F735199210CB67E007E94E1 /* art.scnassets in Resources */,
+				2F735194210CB57F007E94E1 /* Textures in Resources */,
 				2F9B571A210BB84D00FDB2F7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
