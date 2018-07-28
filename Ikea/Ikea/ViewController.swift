@@ -15,6 +15,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var itemsCollection: UICollectionView!
     
     var items: [String] = ["cup", "vase", "boxing", "table"]
+    var selectedItem: String?
     let configuration = ARWorldTrackingConfiguration()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) //here i get the index (indexPath) of the cell that is triggered in collectionView
+        self.selectedItem = self.items[indexPath.row]
         cell?.backgroundColor = UIColor.green
     }
     
@@ -52,8 +54,27 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         self.sceneView.addGestureRecognizer(tapGestureRecognizer)
     }
     
-    @objc func tapped () {
-        print("tap")
+    @objc func tapped(sender: UITapGestureRecognizer) {
+        let sceneView = sender.view as! ARSCNView
+        let tapLocation = sender.location(in: sceneView)
+        //this line check if the location where you tapped (tapLocation) matches to an horizontal plane surface
+        let hitTest = sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
+        if !hitTest.isEmpty {
+            addItem(hitTestResult: hitTest.first!)
+        }
+    }
+    
+    func addItem(hitTestResult: ARHitTestResult) {
+        if let selectedItem = self.selectedItem {
+            let scene =  SCNScene(named: "Models.scnassets/\(selectedItem).scn")
+            print(selectedItem)
+            //now from the scene need to extract out node
+            let node = (scene?.rootNode.childNode(withName: selectedItem, recursively: false))!
+            let transform = hitTestResult.worldTransform //this transform matrix encodes the position of the detected surface in the third coloumn
+            let thirdCol = transform.columns.3
+            node.position = SCNVector3(thirdCol.x, thirdCol.y, thirdCol.z)
+            self.sceneView.scene.rootNode.addChildNode(node)
+        }
     }
 }
 
