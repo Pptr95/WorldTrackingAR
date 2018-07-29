@@ -9,8 +9,9 @@
 import UIKit
 import ARKit
 
-class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, ARSCNViewDelegate {
 
+    @IBOutlet weak var planeDetected: UILabel!
     @IBOutlet weak var sceneView: ARSCNView!
     @IBOutlet weak var itemsCollection: UICollectionView!
     
@@ -24,6 +25,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         self.sceneView.session.run(configuration)
         self.itemsCollection.dataSource = self
         self.itemsCollection.delegate = self
+        self.sceneView.delegate = self
         self.registerGestureRecognizer()
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -90,6 +92,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             let thirdCol = transform.columns.3
             node.position = SCNVector3(thirdCol.x, thirdCol.y, thirdCol.z)
             self.sceneView.scene.rootNode.addChildNode(node)
+        }
+    }
+    //this function is triggered everytime an anchor is placed (which means that a new plane has been detected)
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        guard anchor is ARPlaneAnchor else {return}
+        DispatchQueue.main.async {
+            self.planeDetected.isHidden = false
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.planeDetected.isHidden = true
         }
     }
 }
