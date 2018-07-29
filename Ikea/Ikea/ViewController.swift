@@ -51,7 +51,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func registerGestureRecognizer() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(pinch))
         self.sceneView.addGestureRecognizer(tapGestureRecognizer)
+        self.sceneView.addGestureRecognizer(pinchGestureRecognizer)
     }
     
     @objc func tapped(sender: UITapGestureRecognizer) {
@@ -61,6 +63,20 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let hitTest = sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
         if !hitTest.isEmpty {
             addItem(hitTestResult: hitTest.first!)
+        }
+    }
+    
+    @objc func pinch(sender: UIPinchGestureRecognizer) {
+        let sceneView = sender.view as! ARSCNView
+        let pinchLocation = sender.location(in: sceneView)
+        let hitTest = sceneView.hitTest(pinchLocation)
+        if !hitTest.isEmpty {
+            let result = hitTest.first
+            let node = result?.node
+            let pinchAction = SCNAction.scale(by: sender.scale, duration: 0)
+            print(sender.scale)
+            node?.runAction(pinchAction)
+            sender.scale = 1.0
         }
     }
     
