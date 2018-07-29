@@ -27,6 +27,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         self.itemsCollection.delegate = self
         self.sceneView.delegate = self
         self.registerGestureRecognizer()
+        self.sceneView.autoenablesDefaultLighting = true
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -54,8 +55,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func registerGestureRecognizer() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
         let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(pinch))
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(rotate))
+        longPressGestureRecognizer.minimumPressDuration = 0.1
         self.sceneView.addGestureRecognizer(tapGestureRecognizer)
         self.sceneView.addGestureRecognizer(pinchGestureRecognizer)
+        self.sceneView.addGestureRecognizer(longPressGestureRecognizer)
     }
     
     @objc func tapped(sender: UITapGestureRecognizer) {
@@ -76,21 +80,40 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             let result = hitTest.first
             let node = result?.node
             let pinchAction = SCNAction.scale(by: sender.scale, duration: 0)
-            print(sender.scale)
             node?.runAction(pinchAction)
             sender.scale = 1.0
         }
     }
     
+    @objc func rotate(sender: UILongPressGestureRecognizer) {
+        let sceneView = sender.view as! ARSCNView
+        let holdLocation = sender.location(in: sceneView)
+        let hitTest = sceneView.hitTest(holdLocation)
+        if !hitTest.isEmpty { //if you're holding a plane surface, hitTest array will contain the coordinates where you are holding on, else will be empty
+            let result = hitTest.first
+            if sender.state == .began {
+                let rotation = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadiants), z: 0, duration: 1)
+                let forever = SCNAction.repeatForever(rotation)
+                result?.node.runAction(forever)
+                
+            } else if sender.state == .ended {
+                result?.node.removeAllActions()
+            }
+        }
+        
+    }
+    
     func addItem(hitTestResult: ARHitTestResult) {
         if let selectedItem = self.selectedItem {
             let scene =  SCNScene(named: "Models.scnassets/\(selectedItem).scn")
-            print(selectedItem)
             //now from the scene need to extract out node
             let node = (scene?.rootNode.childNode(withName: selectedItem, recursively: false))!
             let transform = hitTestResult.worldTransform //this transform matrix encodes the position of the detected surface in the third coloumn
             let thirdCol = transform.columns.3
             node.position = SCNVector3(thirdCol.x, thirdCol.y, thirdCol.z)
+            if selectedItem == "table" {
+                self.centerPivot(for: node)
+            }
             self.sceneView.scene.rootNode.addChildNode(node)
         }
     }
@@ -104,5 +127,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 self.planeDetected.isHidden = true
         }
     }
+    
+    func centerPivot(for node: SCNNode) {
+        let min = node.boundingBox.min
+        let max = node.boundingBox.max
+        node.pivot = SCNMatrix4MakeTranslation(min.x + (max.x - min.x)/2, min.y + (max.y - min.y)/2, min.z + (max.z - min.z)/2)
+    }
+}
+
+extension Int {
+    var  degreesToRadiants: Double {return Double(self) * .pi / 180 }
 }
 
